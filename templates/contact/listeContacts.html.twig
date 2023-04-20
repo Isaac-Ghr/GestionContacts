@@ -12,7 +12,8 @@
         </div>
         <img style="aspect-ratio: 1/1; width: 128px; margin: 1rem auto"
         class="rounded-circle"
-        src="{{ contact.avatar }}"/>
+        src="{{ contact.avatar }}"
+        draggable="false"/>
         <div class="px-3">
             <h5 class="card-title">Coordonnées</h5>
             <ul class="list-group list-group-flush">
@@ -22,7 +23,7 @@
             </ul>
         </div>
         <div class="card-body">
-            <a href="#" class="btn btn-primary btn-block text-center">Consulter</a>           
+            <a href="#" class="btn btn-primary text-center">Consulter</a>           
         </div>
     </div>
     {% endfor %}
