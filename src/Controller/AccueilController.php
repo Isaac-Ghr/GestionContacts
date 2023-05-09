@@ -15,10 +15,14 @@ class AccueilController extends AbstractController
     #[Route('/', name: 'app_accueil', methods: 'GET')]
     public function index(ContactRepository $repoCon, CategorieRepository $repoCat): Response
     {
-        $contacts = $repoCon->findAll();
+        $contactsH = $repoCon->findBySexe(0);
+        $contactsF = $repoCon->findBySexe(1);
+        $contacts = count($contactsH) + count($contactsF);
         $categories = $repoCat->findAll();
         return $this->render('accueil/index.html.twig', [
             'controller_name' => 'AccueilController',
+            'lesHommes' => $contactsH,
+            'lesFemmes' => $contactsF,
             'lesContacts' => $contacts,
             'lesCategories' => $categories
         ]);
