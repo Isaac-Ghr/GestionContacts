@@ -4,9 +4,18 @@
 
 {% block body %}
 <h1 class="text-center pt-2">Liste des contacts</h1>
+{% if leSexe is defined %}
+<h2 class="text-center pt-2 text-primary">
+{% if leSexe == 0 %}
+Hommes
+{% else %}
+Femmes
+{% endif %}
+</h2>
+{% endif %}
 <div class="row">
     {% for contact in lesContacts %}
-        <div class="card bg-secondary px-0 mb-3 mx-auto" style="max-width: 20rem;">
+    <div class="card bg-secondary px-0 mb-3 mx-auto" style="max-width: 20rem;">
         <div class="card-header bg-dark">
             <h5 class="card-title text-center text-light">{{contact.nom }} {{ contact.prenom}}</h5>
         </div>

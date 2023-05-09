@@ -3,5 +3,12 @@
 {% block title %}{{parent()}} - Accueil{% endblock %}
 
 {% block body %}
+    <h1 class="text-center pt-2">Bienvenue</h1>
+    <h3 class="text-center pt-2 text-primary">Que souhaitez-vous faire ?</h3>
+
+    <div class="row mx-auto">
+        <a class="btn btn-secondary col mx-1" href="{{path('app_contacts')}}">Consulter les contacts</a>
+        <a class="btn btn-secondary col mx-1" href="{{path('app_categories')}}">Consulter les catégories</a>
+    </div>    
 
 {% endblock %}

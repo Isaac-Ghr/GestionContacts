@@ -28,4 +28,17 @@ class ContactController extends AbstractController
             'leContact' => $contact
         ]);
     }
+
+    #[Route('/contacts/sexe/{sexe}', name: 'app_contactsSexe', methods: 'GET')]
+    public function ficheContactsSexe($sexe, ContactRepository $repo): Response
+    {
+        // empêche d'entrer une valeur non valide
+        if ($sexe < 0) {$sexe = 0;} else if ($sexe > 1) {$sexe = 1;}
+        $contacts = $repo->findBySexe($sexe);
+        return $this->render('contact/listeContacts.html.twig', [
+            'controller_name' => 'ContactController',
+            'lesContacts' => $contacts,
+            'leSexe' => $sexe
+        ]);
+    }
 }

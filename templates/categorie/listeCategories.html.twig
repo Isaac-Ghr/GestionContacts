@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{parent()}} - Catégories{% endblock %}
+
+{% block body %}
+
+<h1 class="text-center pt-2">Liste des catégories</h1>
+<div class="row">
+    {% for categorie in lesCategories %}
+    <div class="card bg-secondary px-0 mb-3 mx-auto col-8" style="max-width: 40rem;">
+        <div class="card-header bg-dark">
+            <h5 class="card-title text-center text-light">{{categorie.libelle }}</h5>
+        </div>
+        <img style="object-fit: center;"
+        src="{{ asset(categorie.image) }}"
+        draggable="false"/>
+        <div class="px-3 mt-2">
+            <h5 class="card-title">Description</h5>
+            <p>
+                {{ categorie.description }}
+            </p>
+        </div>
+        <div class="card-body">
+            <a href="{{path('app_categorie', {'id': categorie.id}) }}" class="btn btn-primary text-center">Consulter</a>           
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

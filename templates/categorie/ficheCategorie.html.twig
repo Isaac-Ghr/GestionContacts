@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{parent()}} - {{ laCategorie.libelle }}{% endblock %}
+
+{% block body %}
+
+<h1 class="text-center pt-2">Fiche catégorie</h1>
+<div class="card bg-secondary px-0 mb-3 mx-auto" style="max-width: 45rem;">
+    <div class="card-header bg-dark">
+        <h5 class="card-title text-center text-light">{{ laCategorie.libelle }}</h5>
+    </div>
+    <div class="row mt-2">
+        <div class="d-flex align-items-center col">
+            <img style="object-fit: center; margin: auto;"
+            src="{{ asset(laCategorie.image) }}"
+            draggable="false"/>
+        </div>
+        <div class="px-3 col">
+            <h5 class="card-title">Description</h5>
+            <p>
+                {{ laCategorie.description }} <br>
+                nombre de contacts : {{ laCategorie.contacts|length }}
+            </p>
+        </div>
+    </div>
+    <div class="mx-3">
+            <h5 class="card-title">Liste des contacts :</h5>
+            <div class="row">
+                {% for contact in laCategorie.contacts %}
+                <div class="col py-2 mx-2 my-2 border rounded text-center">
+                <a class="text-decoration-none text-muted" href="{{path('app_ficheContact', {'id': contact.id})}}">
+                <img height="64" width="64" class="rounded" src="{{ contact.avatar }}">
+                <br> {{contact.nom}} {{contact.prenom}}                
+                </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    <div class="card-body">
+        <a onclick="javascript:history.back()" class="btn btn-primary text-center">Retour</a>           
+    </div>
+</div>
+
+{% endblock %}

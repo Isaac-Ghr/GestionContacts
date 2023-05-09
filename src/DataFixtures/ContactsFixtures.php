@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Contact;
+use App\Entity\Categorie;
 use Faker\Factory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -13,7 +14,31 @@ class ContactsFixtures extends Fixture
     {
         // setup des variables
         $faker = Factory::create("fr_FR");
+        $tabcat = [];
         $genres = ["male","female"];
+
+        // catégorie
+        $categorie = new Categorie();
+        // business
+        $categorie  -> setlibelle("professionnel")
+                    -> setDescription("lorem")
+                    -> setImage("img/categories/professionnel.jpg");
+        $manager -> persist($categorie);
+        $tabCat[] = $categorie;
+        // sport
+        $categorie = new Categorie();
+        $categorie  -> setlibelle("sport")
+                    -> setDescription("lorem")
+                    -> setImage("img/categories/sport.jpg");
+        $manager -> persist($categorie);
+        $tabCat[] = $categorie;
+        // privé
+        $categorie = new Categorie();
+        $categorie  -> setlibelle("privé")
+                    -> setDescription("lorem")
+                    -> setImage("img/categories/prive.jpg");
+        $manager -> persist($categorie);
+        $tabCat[] = $categorie;
 
         for ($i = 0; $i < 100; $i++) {
             // random
@@ -29,7 +54,8 @@ class ContactsFixtures extends Fixture
                     ->setVille($faker->city())
                     ->setMail($faker->email())
                     ->setSexe($sexe)
-                    ->setAvatar("https://randomuser.me/api/portraits/{$type}/{$i}.jpg");
+                    ->setAvatar("https://randomuser.me/api/portraits/{$type}/{$i}.jpg")
+                    ->setCategorie($tabCat[mt_rand(0,2)]);
             $manager->persist($contact);
         }
 

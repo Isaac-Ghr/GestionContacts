@@ -17,21 +17,21 @@
     <body>
        {# navbar #}
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary px-3">
-        <a class="navbar-brand text-light" href="#">Mes Contacts</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link text-light" href="accueil">Page d'accueil</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-light" href="contacts">Liste des contacts</a>
-            </li>
-            </ul>
-        </div>
+        <a class="navbar-brand text-light" href="{{path('app_accueil')}}">Mes Contacts</a>
+        <ul class="nav mr-auto">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-light" data-toggle="dropdown" href="#" role="button" aria-expanded="false">Contacts</a>
+            <div class="dropdown-menu">
+            <a class="dropdown-item" href="{{path('app_contacts')}}">Tout les contacts</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="{{path('app_contactsSexe', {'sexe': 0})}}">Hommes</a>
+            <a class="dropdown-item" href="{{path('app_contactsSexe', {'sexe': 1})}}">Femmes</a>
+            </div>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-light" href="{{path('app_categories')}}">Liste des categories</a>
+        </li>
+        </ul>
     </nav>
     <div class="container">
         {# Endroit où sera chargé le contenu #}
